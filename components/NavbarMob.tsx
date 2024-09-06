@@ -4,33 +4,9 @@ import React, { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import {
-    SignInButton,
-    SignedIn,
-    SignedOut,
-    UserButton
-} from '@clerk/nextjs'
-import { Button } from './ui/button';
 import { DarkMode } from './DarkMode';
-
-const menulist = [
-    {
-        name: "Home",
-        href: '/',
-    },
-    {
-        name: "Games",
-        href: '/games',
-    },
-    {
-        name: "About",
-        href: '/about',
-    },
-    {
-        name: "Contact",
-        href: '/contact',
-    },
-]
+import { menulist } from '@/lib/data';
+import Login from './Login';
 
 const NavbarMob = () => {
 
@@ -40,8 +16,8 @@ const NavbarMob = () => {
     return (
         <>
             <div className='sticky top-0 bg-background/70 backdrop-blur-sm z-50 flex md:hidden items-center justify-between p-5 border-b'>
-            <div className="logo">
-                    <Link href={'/'} className='hover:text-primary text-lg'>Gamerz Shop</Link>
+                <div className="logo">
+                    <Link href={'/'} className='hover:text-primary text-lg'>Imagine</Link>
                 </div>
                 <div className="menu flex gap-5">
                     <button onClick={() => setNavbar(!navbar)}>
@@ -56,25 +32,18 @@ const NavbarMob = () => {
                             {menulist.map((link) => {
                                 const isActive = pathname.endsWith(link.href);
                                 return (
-                                        <Link key={link.name} className={`${isActive ? "text-primary" : "text-zinc-500"} flex hover:bg-primary/10 rounded hover:text-primary py-2 px-3 mx-3`} onClick={() => setNavbar(!navbar)} href={link.href}>{link.name}</Link>
+                                    <Link key={link.name} className={`${isActive ? "text-primary" : "text-zinc-500"} flex hover:bg-primary/10 rounded hover:text-primary py-2 px-3 mx-3`} onClick={() => setNavbar(!navbar)} href={link.href}>{link.name}</Link>
                                 )
                             })}
                         </div>
                         <hr />
                         <div className="icons flex gap-3 py-5 px-2 mx-2 justify-between items-center">
-                        <div className=''>
-                        <SignedOut>
-                        <Button>
-                        <SignInButton mode='modal' forceRedirectUrl={'/'} />
-                        </Button>
-                    </SignedOut>
-                    <SignedIn>
-                        <UserButton />
-                    </SignedIn>
-                        </div>
-                        <div>
-                            <DarkMode />
-                        </div>
+                            <div className=''>
+                                <Login />
+                            </div>
+                            <div>
+                                <DarkMode />
+                            </div>
                         </div>
                     </div>
                 </div>

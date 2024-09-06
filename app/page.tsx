@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button'
+import CarouselHome from '@/components/CarouselHome'
 import React from 'react'
 
-const Home = () => {
+const page = () => {
   return (
-    <main className='flex justify-center'>
-      <Button>Click me</Button>
-    </main>
+    <div>
+      <CarouselHome />
+    </div>
   )
 }
 
-export default Home
+export default page

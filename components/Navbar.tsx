@@ -3,42 +3,19 @@
 import React from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
-import {
-    SignInButton,
-    SignedIn,
-    SignedOut,
-    UserButton
-} from '@clerk/nextjs'
-import { Button } from './ui/button';
 import { DarkMode } from './DarkMode';
+import { menulist } from '@/lib/data';
+import Login from './Login';
 
-const menulist = [
-    {
-        name: "Home",
-        href: '/',
-    },
-    {
-        name: "Games",
-        href: '/games',
-    },
-    {
-        name: "About",
-        href: '/about',
-    },
-    {
-        name: "Contact",
-        href: '/contact',
-    },
-]
 
 const Navbar = () => {
 
     const pathname = usePathname();
-    
+
     return (
         <div className='hidden md:flex items-center justify-between p-6 border-b'>
             <div className="logo">
-                <Link href={'/'} className='hover:text-primary text-lg'>Gamerz Shop</Link>
+                <Link href={'/'} className='hover:text-primary text-lg'>Imagine</Link>
             </div>
             <div className="menu flex gap-5">
                 {
@@ -59,14 +36,7 @@ const Navbar = () => {
                     <DarkMode />
                 </div>
                 <div className='flex justify-center items-center'>
-                <SignedOut>
-                    <Button>
-                    <SignInButton mode='modal' forceRedirectUrl={'/'} />
-                    </Button>
-                </SignedOut>
-                <SignedIn>
-                    <UserButton />
-                </SignedIn>
+                    <Login />
                 </div>
             </div>
         </div>
